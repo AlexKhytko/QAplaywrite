@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-// "userId": 200906
  test('Enterence garage', async ({ page }: { page: Page }) => {
   await page.goto('https://guest:welcome2qauto@qauto.forstudy.space');
   await page.getByText('Sign In').click();
@@ -14,8 +13,9 @@ import { test, expect } from '@playwright/test';
 test('Get Bearer Token', async ({ request }) => {
   const response = await request.post('https://qauto.forstudy.space/api/auth/login', {
     data: {
-      username: 'user@user.test',  // Замените на ваш логин
-      password: 'Qwerty12345'   // Замените на ваш пароль
+     "email": "test@test.com",
+       "password": "Qwerty12345",
+       "remember": false
     },
     headers: {
       'accept': 'application/json',
@@ -47,8 +47,7 @@ test('Car successfully created', async ({ request }) => {
     headers: {
       'accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    }
+     }
   });
 
   expect(response.status()).toBe(200);
