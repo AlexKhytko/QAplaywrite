@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 
-// "userId": 200906
  test('Enterence garage', async ({ page }: { page: Page }) => {
   await page.goto('https://guest:welcome2qauto@qauto.forstudy.space');
   await page.getByText('Sign In').click();
@@ -11,22 +10,20 @@ import { test, expect } from '@playwright/test';
   await page.context().storageState({ path: 'storageState.json' });
 });
 
-test('Get Bearer Token', async ({ request }) => {
+test('Get Data', async ({ request }) => {
   const response = await request.post('https://qauto.forstudy.space/api/auth/login', {
     data: {
-      username: 'user@user.test',  // Замените на ваш логин
-      password: 'Qwerty12345'   // Замените на ваш пароль
+     "email": "test@test.com",
+       "password": "Qwerty12345",
+       "remember": false
     },
     headers: {
       'accept': 'application/json',
       'Content-Type': 'application/json'
     }
   });
-
   const responseBody = await response.json();
-  const token = responseBody.token;  // Предположим, что токен приходит в поле `token`
 
-  console.log('Bearer Token:', token);  // Сохраняем токен для дальнейшего использования
 });
 
 // Положительный сценарий: создание машины
@@ -47,8 +44,7 @@ test('Car successfully created', async ({ request }) => {
     headers: {
       'accept': 'application/json',
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    }
+     }
   });
 
   expect(response.status()).toBe(200);
