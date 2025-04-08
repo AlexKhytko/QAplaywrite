@@ -10,7 +10,7 @@ import { test, expect } from '@playwright/test';
   await page.context().storageState({ path: 'storageState.json' });
 });
 
-test('Get Bearer Token', async ({ request }) => {
+test('Get Data', async ({ request }) => {
   const response = await request.post('https://qauto.forstudy.space/api/auth/login', {
     data: {
      "email": "test@test.com",
@@ -22,11 +22,8 @@ test('Get Bearer Token', async ({ request }) => {
       'Content-Type': 'application/json'
     }
   });
-
   const responseBody = await response.json();
-  const token = responseBody.token;  // Предположим, что токен приходит в поле `token`
 
-  console.log('Bearer Token:', token);  // Сохраняем токен для дальнейшего использования
 });
 
 // Положительный сценарий: создание машины
